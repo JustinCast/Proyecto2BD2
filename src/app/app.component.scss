@@ -1,4 +1,5 @@
 .sidenav {
+  background-color: rgba(255, 255, 255, 0.7);
   width: 15%;
   position: fixed;
   z-index: 1;
@@ -7,43 +8,31 @@
   overflow-x: hidden;
   padding: 8px 0;
 }
-
-mat-list-item {
-  cursor: pointer;
-}
-mat-list-item:hover {
-  background-color: #1a237e;
-  color: white;
-}
-
 @media screen and (max-height: 450px) {
   .sidenav {
     padding-top: 15px;
   }
 }
+mat-radio-button {
+  color: white;
+  display: block;
+  font-size: 35px;
+}
+mat-icon {
+  font-size: 25px;
+}
+#newconn-btn {
+  background: #5ea8c5;
+  color: white;
+}
 .footer {
-  box-shadow: 0px -2px 3px rgba(221, 220, 220, 0.75);
-  border-top: 0.5px solid lightgray;
+  box-shadow: 0px -2px 3px rgba(255, 255, 255, 0.1);
   padding-top: 1%;
   position: absolute;
-  background-color: #1a237e;
+  background-color: rgba(4, 37, 56, 0.2);
   color: white;
   bottom: 0;
   width: 100%;
   height: 60px;
   line-height: 60px;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-  background-color: #1a237e;
-}
-#footer-container {
-  width: 100%;
-  padding-left: 1%;
-  background-color: #1a237e;
-}
-
-li a:hover {
-  color: white;
 }
