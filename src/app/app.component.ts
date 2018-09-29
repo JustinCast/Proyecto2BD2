@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { MatIcon, MatRadioChange, MatRadioButton } from "@angular/material";
+import { DialogManagerService } from "./dialog-manager.service";
 
 @Component({
   selector: "app-root",
@@ -7,8 +8,11 @@ import { MatIcon, MatRadioChange, MatRadioButton } from "@angular/material";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
+  constructor(private _dialogManager: DialogManagerService) {}
 
-  activeConn() {
-
+  newConn() {
+    this._dialogManager.openNewConnectionDialog();
   }
+
+  activeConn() {}
 }

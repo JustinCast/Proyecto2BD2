@@ -1,9 +1,23 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
+import { MatDialog, MatDialogRef } from "@angular/material";
+import { ConnectionDialogComponent } from "./connection-dialog/connection-dialog.component";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class DialogManagerService {
+  constructor(public dialog: MatDialog) {}
 
-  constructor() { }
+  openNewConnectionDialog() {
+    let dialogRef: MatDialogRef<ConnectionDialogComponent> = this.dialog.open(
+      ConnectionDialogComponent,
+      {
+        width: "25%",
+        height: "40%",
+        panelClass: 'dialog'
+        // data
+      }
+    );
+    return dialogRef.afterClosed();
+  }
 }
