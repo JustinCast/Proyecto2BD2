@@ -4,7 +4,6 @@ form {
   height: 100%;
   margin: auto;
   border-radius: 10px;
-  
 }
 h1 {
   margin-top: 4%;
@@ -12,4 +11,8 @@ h1 {
 #inputs-div {
   border: 0.5px dashed #dedede;
   border-radius: 10px;
+}
+#submit-btn {
+  background: #5ea8c5;
+  color: white
 }
