@@ -3,12 +3,18 @@
     <button (click)="newConn()" id="newconn-btn" mat-raised-button>New Connection <mat-icon>add</mat-icon></button>
   </div>
   <hr>
-  <mat-radio-group class="container">
-    <mat-radio-button color="primary" (click)="activeConn()" value="1">Connection 1</mat-radio-button>
-    <mat-radio-button color="primary" (click)="activeConn()" value="2">Connection 2</mat-radio-button>
+  <mat-radio-group *ngIf="conn.actualConnections.length !== 0; else noConns" class="container">
+    <mat-radio-button *ngFor="let c of conn.actualConnections; let i = index" color="primary" (click)="activeConn()" value="c">{{c.name}}</mat-radio-button>
   </mat-radio-group>
+  <ng-template #noConns>
+    <div class="text-center text-secondary">
+      <p>Connections will apear here</p>
+    </div>
+  </ng-template>
 </div>
 
 <footer class="footer shadow p-3 mb-1 rounded">
-  <h3 class="text-center">Segundo Proyecto Bases de Datos 2</h3>
+  <div class="content">
+    <h3 class="text-center">Segundo Proyecto Bases de Datos 2</h3>
+  </div>
 </footer>
