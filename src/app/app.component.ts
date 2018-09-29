@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { MatIcon, MatRadioChange, MatRadioButton } from "@angular/material";
 import { DialogManagerService } from "./dialog-manager.service";
 import { Connection } from "./models/Connection";
+import { ConnService } from "./services/conn.service";
 
 @Component({
   selector: "app-root",
@@ -9,13 +10,17 @@ import { Connection } from "./models/Connection";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  constructor(private _dialogManager: DialogManagerService) {}
+  constructor(
+    private _dialogManager: DialogManagerService,
+    private conn: ConnService
+  ) {}
 
   newConn() {
     this._dialogManager
       .openNewConnectionDialog(new Connection("", "", 0, "", "", ""))
-      .subscribe((c) => {
-        console.log(c.conn);
+      .subscribe(c => {
+        if(c)
+          this.conn.actualConnections.unshift(c);
       });
   }
 

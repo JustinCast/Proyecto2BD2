@@ -28,7 +28,7 @@ export class ConnectionDialogComponent implements OnInit {
 
   ngOnInit() {
     this.loginFG.valueChanges.subscribe(() => {
-      if (this.loginFG.invalid == false) this.icon = "done";
+      if (this.loginFG.valid) this.icon = "done";
       else this.icon = "priority_high";
     });
   }
