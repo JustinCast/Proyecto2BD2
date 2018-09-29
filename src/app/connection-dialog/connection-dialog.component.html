@@ -4,6 +4,9 @@
     <hr>
     <div id="inputs-div" class="card shadow-sm p-3">
       <mat-form-field class="container input-field">
+        <input matInput [formControl]="loginFG.get('name')" placeholder="Connection name" >
+      </mat-form-field>
+      <mat-form-field class="container input-field">
         <input matInput [formControl]="loginFG.get('server')" placeholder="Server" >
       </mat-form-field>
       <mat-form-field class="container">
