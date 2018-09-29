@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { ConnectionDialogComponent } from './connection-dialog/connection-dialog.component';
 import { DialogManagerService } from './dialog-manager.service';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,9 @@ import { DialogManagerService } from './dialog-manager.service';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [DialogManagerService],
   entryComponents: [

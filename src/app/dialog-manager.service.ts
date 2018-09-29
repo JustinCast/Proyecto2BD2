@@ -13,7 +13,7 @@ export class DialogManagerService {
       ConnectionDialogComponent,
       {
         width: "25%",
-        height: "40%",
+        height: "70%",
         panelClass: 'dialog'
         // data
       }
