@@ -7,6 +7,7 @@ import { SharedModule } from './shared/shared.module';
 import { ConnectionDialogComponent } from './connection-dialog/connection-dialog.component';
 import { DialogManagerService } from './dialog-manager.service';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     BrowserAnimationsModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [DialogManagerService],
   entryComponents: [

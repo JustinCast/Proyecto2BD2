@@ -17,12 +17,7 @@ export class AppComponent {
 
   newConn() {
     this._dialogManager
-      .openNewConnectionDialog(new Connection("", "", 0, "", "", ""))
-      .subscribe(c => {
-        console.log(c.conn);
-        if(c)
-          this.conn.actualConnections.unshift(c.conn);
-      });
+      .openNewConnectionDialog(new Connection("", "", 0, "", "", ""));
   }
 
   activeConn() {}
