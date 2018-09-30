@@ -43,6 +43,7 @@ export class ConnectionDialogComponent implements OnInit {
     this.connection.database = this.loginFG.get("database").value;
     this.connection.user = this.loginFG.get("user").value;
     this.connection.password = this.loginFG.get("password").value;
+    this.makeLoginRequest();
   }
 
   makeLoginRequest() {
