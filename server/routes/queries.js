@@ -10,6 +10,7 @@ async function login(req, res) {
     /*const result = await client.query('SELECT * FROM _user')
     console.log(result.rows[0])
     await client.end()*/
+    res.status(200).json({logged: true})
   } catch (error) {
     console.log(error);
   }

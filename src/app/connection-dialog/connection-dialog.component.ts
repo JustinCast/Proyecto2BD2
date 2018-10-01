@@ -51,6 +51,7 @@ export class ConnectionDialogComponent implements OnInit {
     .subscribe(
       () => {
         this._conn.actualConnections.unshift(this.connection);
+        this._conn.saveSession(this.connection);
       },
       (err: HttpErrorResponse) => {
         this._conn.errorHandler(err);
