@@ -10,7 +10,10 @@ export class UIUtilService {
 
   openSnackBar(message: string, action: string) {
     this.snackbar.open(message, action, {
-      duration: 2000
+      duration: 2000,
+      verticalPosition: 'top',
+      horizontalPosition: 'right',
+      panelClass: 'snack'
     });
   }
 }

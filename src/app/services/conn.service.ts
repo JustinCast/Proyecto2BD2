@@ -30,7 +30,7 @@ export class ConnService {
   }
 
   getConn(): any {
-    return localStorage.getItem("loggedConn");
+    return JSON.parse(localStorage.getItem("loggedConn"));
   }
 
   isLoggedIn(): boolean {
