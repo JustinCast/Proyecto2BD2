@@ -1,9 +1,8 @@
 const { Client } = require('pg')
-
+var client
 async function login(req, res) {
-  console.log(req.body.conn)
   try {
-    const client = new Client({connectionString: String(req.body.conn)})
+    client = new Client({connectionString: String(req.body.conn)})
 
     await client.connect()
 
@@ -16,6 +15,18 @@ async function login(req, res) {
   }
 }
 
+async function getSchemas(req, res) {
+  try {
+    await client.connect();
+
+    let result = await client.query('SELECT * FROM getSchemas()')
+    res.status(200).json(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 module.exports = {
-  login: login
+  login: login,
+  getSchemas: getSchemas
 };
