@@ -1,21 +1,15 @@
-const pg = require("pg");
+const { Client } = require('pg')
 
-//var pool;
-function login(req, res) {
+async function login(req, res) {
+  console.log(req.body.conn)
   try {
-    const client = new pg.Client({
-      connectionString:
-        "postgres://JustinCast@jc-postgresql:python.1524@jc-postgresql.postgres.database.azure.com:5432/p2db2?ssl=true"
-    });
-    client.connect();
+    const client = new Client({connectionString: String(req.body.conn)})
 
-    client
-      .query("SELECT NOW()")
-      .then(res => {
-        console.log(res);
-        client.end();
-      })
-      .catch(err => console.log(err));
+    await client.connect()
+
+    const result = await client.query('SELECT * FROM _user')
+    console.log(result.rows[0])
+    await client.end()
   } catch (error) {
     console.log(error);
   }

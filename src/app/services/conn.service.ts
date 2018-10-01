@@ -12,7 +12,11 @@ export class ConnService {
   constructor(private _http: HttpClient) { }
 
   login(conn: Connection): Observable<any>  {
-    return this._http.post(`${environment.SERVER_BASE_URL}login`, conn)
+    let connString = `postgres://${conn.user}:${conn.password}@${
+      conn.server
+    }:${conn.port}/${conn.database}?ssl=false`;
+    console.log(connString);
+    return this._http.post(`${environment.SERVER_BASE_URL}login`, {conn: connString})
   }
 
   errorHandler(err: HttpErrorResponse) {
