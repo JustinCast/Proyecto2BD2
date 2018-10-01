@@ -7,9 +7,9 @@ async function login(req, res) {
 
     await client.connect()
 
-    const result = await client.query('SELECT * FROM _user')
+    /*const result = await client.query('SELECT * FROM _user')
     console.log(result.rows[0])
-    await client.end()
+    await client.end()*/
   } catch (error) {
     console.log(error);
   }
