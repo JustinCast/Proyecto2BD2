@@ -42,9 +42,12 @@ async function getTablesPrivileges(req, res) {
     loadLocalStorage();
     client = new Client({connectionString: localStorage.getItem('connString')})
     await client.connect();
-
-    let result = await client.query('SELECT * FROM db_privileges($1)', ['p2db2'])
-    res.status(200).json(result.rows);
+    let query = {
+      text: 'SELECT * from db_privileges($1)',
+      values: ['usr_p2db2']
+    }
+    let result = await client.query(query)
+    res.status(200).json(result);
   } catch (error) {
     console.log(error);
   }
