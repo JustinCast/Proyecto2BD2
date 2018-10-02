@@ -2,7 +2,7 @@
     <ul id="schemas-ul">
         <li *ngFor="let s of _privileges.schemas">
             <mat-accordion>
-                <mat-expansion-panel>
+                <mat-expansion-panel (click)="expandSchema(s.name)">
                     <mat-expansion-panel-header>
                     <mat-panel-title>
                         {{s.name}}
