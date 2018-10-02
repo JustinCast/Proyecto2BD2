@@ -14,9 +14,9 @@ export class PrivilegesService {
   ) { }
 
   getSchemas() {
-    this._http.get<any>(`${environment.SERVER_BASE_URL}getSchemas`)
+    this._http.get<any>(`${environment.SERVER_BASE_URL}getSchemas`, )
     .subscribe(
-      data => this.schemas = data,
+      data => {this.schemas = data; console.log(this.schemas)},
       (err: HttpErrorResponse) => {
         this.errorHandler(err);
       }

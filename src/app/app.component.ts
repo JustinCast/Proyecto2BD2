@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { MatIcon, MatRadioChange, MatRadioButton } from "@angular/material";
+import { MatIcon, MatRadioChange, MatRadioButton, MatCheckbox } from "@angular/material";
 import { DialogManagerService } from "./dialog-manager.service";
 import { Connection } from "./models/Connection";
 import { ConnService } from "./services/conn.service";
@@ -25,5 +25,7 @@ export class AppComponent implements OnInit {
       .openNewConnectionDialog(new Connection("", "", 0, "", "", ""));
   }
 
-  activeConn() {}
+  activeConn(checkbox: MatCheckbox) {
+    console.log(checkbox.value);
+  }
 }
