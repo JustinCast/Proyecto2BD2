@@ -44,7 +44,7 @@ async function getTablesPrivileges(req, res) {
     await client.connect();
     let query = {
       text: 'SELECT * from db_privileges($1)',
-      values: ['usr_p2db2']
+      values: [req.params.usr]
     }
     let result = await client.query(query)
     res.status(200).json(result);

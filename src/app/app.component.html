@@ -4,7 +4,7 @@
   </div>
   <hr>
   <mat-radio-group *ngIf="conn.actualConnections.length !== 0; else noConns" class="container">
-    <mat-radio-button *ngFor="let c of conn.actualConnections; let i = index" color="primary" (click)="activeConn()" value="c">{{c.name}}</mat-radio-button>
+    <mat-radio-button #check *ngFor="let c of conn.actualConnections; let i = index" color="primary" (click)="activeConn(check)" [value]="c">{{c.name}}</mat-radio-button>
   </mat-radio-group>
   <ng-template #noConns>
     <div class="text-center text-secondary">
@@ -13,7 +13,7 @@
   </ng-template>
 </div>
 
-<app-privileges></app-privileges>
+<app-privileges *ngIf="_privilegeService.connection"></app-privileges>
 
 <footer class="footer shadow p-3 mb-1 rounded">
   <div class="content">

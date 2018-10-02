@@ -5,6 +5,6 @@ const queries = require('./queries')
 
 router.post('/login', queries.login);
 router.get('/getSchemas', queries.getSchemas);
-router.get('/getTablePrivileges', queries.getTablesPrivileges);
+router.get('/getTablePrivileges/:usr', queries.getTablesPrivileges);
 
 module.exports = router;

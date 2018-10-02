@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UIUtilService } from './uiutil.service';
 import { environment } from '../../environments/environment';
+import { Connection } from '../models/Connection';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PrivilegesService {
   schemas: Array<any> = [];
+  connection: Connection;
   constructor(
     private _http: HttpClient,
     private _ui: UIUtilService
@@ -24,7 +26,7 @@ export class PrivilegesService {
   }
 
   getTablesPrivileges() {
-    this._http.get<any>(`${environment.SERVER_BASE_URL}getTablePrivileges`)
+    this._http.get<any>(`${environment.SERVER_BASE_URL}getTablePrivileges/${this.connection.user}`)
     .subscribe(
       data => console.log(data),
       (err: HttpErrorResponse) => {
