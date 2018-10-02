@@ -37,7 +37,21 @@ async function getSchemas(req, res) {
   }
 }
 
+async function getTablesPrivileges(req, res) {
+  try {
+    loadLocalStorage();
+    client = new Client({connectionString: localStorage.getItem('connString')})
+    await client.connect();
+
+    let result = await client.query('SELECT * FROM db_privileges($1)', ['p2db2'])
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 module.exports = {
   login: login,
-  getSchemas: getSchemas
+  getSchemas: getSchemas,
+  getTablesPrivileges: getTablesPrivileges
 };
