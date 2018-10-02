@@ -25,5 +25,10 @@ export class AppComponent implements OnInit {
       .openNewConnectionDialog(new Connection("", "", 0, "", "", ""));
   }
 
+  openQueryDialog(){
+    this._dialogManager
+    .openQueryDialog();
+  }
+
   activeConn() {}
 }

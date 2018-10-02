@@ -9,6 +9,7 @@ const api = require("./routes/api");
 /**
  * Server config
  */
+
 function config() {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());

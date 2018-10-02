@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { MatDialog, MatDialogRef } from "@angular/material";
 import { ConnectionDialogComponent } from "./connection-dialog/connection-dialog.component";
 import { Connection } from "./models/Connection";
+import { QueryDialogComponent } from "./query-dialog/query-dialog.component";
 
 @Injectable({
   providedIn: "root"
@@ -21,4 +22,15 @@ export class DialogManagerService {
     );
     return dialogRef.afterClosed();
   }
+
+  openQueryDialog(){
+    let dialogRef: MatDialogRef<QueryDialogComponent> = this.dialog.open(
+      QueryDialogComponent, {
+      width: "50%",
+      height: "40%",
+      }
+    );
+    return dialogRef.afterClosed();
+  }
+
 }

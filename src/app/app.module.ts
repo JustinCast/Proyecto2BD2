@@ -9,9 +9,10 @@ import { DialogManagerService } from "./dialog-manager.service";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { UIUtilService } from "./services/uiutil.service";
+import { QueryDialogComponent } from './query-dialog/query-dialog.component';
 
 @NgModule({
-  declarations: [AppComponent, ConnectionDialogComponent],
+  declarations: [AppComponent, ConnectionDialogComponent, QueryDialogComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -21,7 +22,10 @@ import { UIUtilService } from "./services/uiutil.service";
     HttpClientModule
   ],
   providers: [DialogManagerService, UIUtilService],
-  entryComponents: [ConnectionDialogComponent],
+  entryComponents: [
+    ConnectionDialogComponent,
+    QueryDialogComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
