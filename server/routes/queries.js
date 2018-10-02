@@ -47,7 +47,7 @@ async function getTablesPrivileges(req, res) {
       values: [req.params.usr]
     }
     let result = await client.query(query)
-    res.status(200).json(result);
+    res.status(200).json(result.rows);
   } catch (error) {
     console.log(error);
   }

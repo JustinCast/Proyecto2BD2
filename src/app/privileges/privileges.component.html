@@ -1,5 +1,5 @@
 <div id="privileges-container" class="container">
-    <ul id="schemas-ul">
+    <ul id="schemas-ul" *ngIf="_privileges.schemas.length !== 0; else progressbar">
         <li *ngFor="let s of _privileges.schemas">
             <mat-accordion>
                 <mat-expansion-panel (click)="expandSchema(s.name)">
@@ -8,8 +8,17 @@
                         {{s.name}}
                     </mat-panel-title>
                     </mat-expansion-panel-header>
+                    <ul>
+                        <li *ngFor="let t of _privileges.tablePrivileges">{{t.privilege}}</li>
+                    </ul>
                 </mat-expansion-panel>
             </mat-accordion>
         </li>
     </ul>
+    <ng-template #progressbar>
+        <div id="loading" class="container">
+            <h2 class="text-center text-primary">Loading Schemas</h2>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+    </ng-template>
 </div>

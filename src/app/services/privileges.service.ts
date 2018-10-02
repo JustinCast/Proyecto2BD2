@@ -9,6 +9,7 @@ import { Connection } from '../models/Connection';
 })
 export class PrivilegesService {
   schemas: Array<any> = [];
+  tablePrivileges: Array<any> = [];
   connection: Connection;
   constructor(
     private _http: HttpClient,
@@ -28,7 +29,7 @@ export class PrivilegesService {
   getTablesPrivileges() {
     this._http.get<any>(`${environment.SERVER_BASE_URL}getTablePrivileges/${this.connection.user}`)
     .subscribe(
-      data => console.log(data),
+      data => {this.tablePrivileges = data; console.log(data)},
       (err: HttpErrorResponse) => {
         this.errorHandler(err);
       }
