@@ -8,6 +8,7 @@ import { PrivilegesService } from '../services/privileges.service';
 })
 export class PrivilegesComponent implements OnInit {
   step = 0;
+  innerStep = 0;
   constructor(private _privileges: PrivilegesService) { }
 
   ngOnInit() {
@@ -16,6 +17,10 @@ export class PrivilegesComponent implements OnInit {
 
   setStep(index: number) {
     this.step = index;
+  }
+
+  setInnerStep(index: number) {
+    this.innerStep = index;
   }
 
   expandSchema(name: string, index: number) {

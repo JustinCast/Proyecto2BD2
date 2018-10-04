@@ -4,14 +4,22 @@
             <mat-accordion>
                 <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i)" hideToggle (click)="expandSchema(s.name, i)">
                     <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <span class="text-danger mr-2"><strong>Schema: </strong></span>{{s.name}}
-                    </mat-panel-title>
+                        <mat-panel-title>
+                            <span class="text-danger mr-2"><strong>Schema: </strong></span>{{s.name}}
+                        </mat-panel-title>
                     </mat-expansion-panel-header>
                     <ul id="tables-ul" *ngIf="_privileges.tablePrivileges.length !== 0; else privileges_progressbar">
-                        <li *ngFor="let t of _privileges.tablePrivileges">
-                            <span class="text-info">{{t.t_name}}</span><br>
-                            <span>Privileges: {{t.privileges}}</span>
+                        <li *ngFor="let t of _privileges.tablePrivileges; let innerIndex = index">
+                            <mat-accordion>
+                                <mat-expansion-panel [expanded]="innerStep === innerIndex" (opened)="setInnerStep(innerIndex)" hideToggle>
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <span class="mr-2 table-name"><strong>Table: </strong></span>{{t.t_name}}
+                                            <span class="ml-4 mr-2 privileges"><strong>Privileges: </strong></span>{{t.privileges}}
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                </mat-expansion-panel>
+                            </mat-accordion>
                         </li>                
                     </ul>
                 </mat-expansion-panel>
