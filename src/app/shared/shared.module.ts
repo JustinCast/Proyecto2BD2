@@ -11,7 +11,7 @@ import {
   MatExpansionModule,
   MatProgressBarModule,
   MatTreeModule,
-  MatTableModule
+  MatTableModule,
   MatSlideToggleModule
  } from "@angular/material";
 @NgModule({
@@ -23,7 +23,12 @@ import {
     MatRadioModule,
     MatDialogModule,
     MatInputModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatExpansionModule,
+    MatProgressBarModule,
+    MatTreeModule,
+    MatTableModule,
+    MatSlideToggleModule
   ],
   exports: [
     MatButtonModule,
@@ -32,7 +37,12 @@ import {
     MatRadioModule,
     MatDialogModule,
     MatInputModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatExpansionModule,
+    MatProgressBarModule,
+    MatTreeModule,
+    MatTableModule,
+    MatSlideToggleModule
   ],
   declarations: []
 })

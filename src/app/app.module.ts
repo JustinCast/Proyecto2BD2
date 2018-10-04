@@ -13,7 +13,7 @@ import { PrivilegesComponent } from './privileges/privileges.component';
 import { QueryDialogComponent } from './query-dialog/query-dialog.component';
 
 @NgModule({
-  declarations: [AppComponent, ConnectionDialogComponent, PrivilegesComponent],
+  declarations: [AppComponent, ConnectionDialogComponent, PrivilegesComponent,QueryDialogComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
