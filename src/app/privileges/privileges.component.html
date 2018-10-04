@@ -1,5 +1,6 @@
 <div id="privileges-container" class="container">
     <ul id="schemas-ul" *ngIf="_privileges.schemas.length !== 0; else progressbar">
+        <h2 class="text-center text-white shadow p-3 mb-2 rounded">Privileges Overview</h2>
         <li *ngFor="let s of _privileges.schemas; let i = index">
             <mat-accordion>
                 <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i)" hideToggle (click)="expandSchema(s.name, i)">

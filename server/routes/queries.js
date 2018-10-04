@@ -45,8 +45,24 @@ async function getTablesPrivileges(req, res) {
     let query = {
       text: 'SELECT * from db_privileges($1, $2)',
       values: [req.params.usr, req.params.schema]
-    }
+    } 
     let result = await client.query(query)
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function getColumnsPrivileges(req, res) {
+  try {
+    loadLocalStorage();
+    client = new Client({ connectionString: localStorage.getItem('connString')})
+    await client.connect();
+    let query = {
+      text: 'SELECT * FROM columns_privileges($1)',
+      values: [req.params.table_name]
+    }
+    let result = await client.query(query);
     res.status(200).json(result.rows);
   } catch (error) {
     console.log(error);
@@ -56,5 +72,6 @@ async function getTablesPrivileges(req, res) {
 module.exports = {
   login: login,
   getSchemas: getSchemas,
-  getTablesPrivileges: getTablesPrivileges
+  getTablesPrivileges: getTablesPrivileges,
+  getColumnsPrivileges: getColumnsPrivileges
 };
