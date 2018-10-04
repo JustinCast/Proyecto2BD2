@@ -69,9 +69,18 @@ async function getColumnsPrivileges(req, res) {
   }
 }
 
+async function executeQuery(req, res){
+  try {
+    
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 module.exports = {
   login: login,
   getSchemas: getSchemas,
   getTablesPrivileges: getTablesPrivileges,
-  getColumnsPrivileges: getColumnsPrivileges
+  getColumnsPrivileges: getColumnsPrivileges,
+  executeQuery : executeQuery
 };

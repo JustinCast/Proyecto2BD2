@@ -1,4 +1,4 @@
-<div id="containerQueryDialog" style="background-color: silver; margin: 0px">
+<div id="containerQueryDialog" style="background-color: silver; margin: 1px;">
   <h3 class="text-center">Write the query</h3>
   <hr>
   <mat-slide-toggle (click)="availableWriteQuery()" id="enableOrDesable" style="float: right; margin: 2%"></mat-slide-toggle>  
@@ -7,5 +7,27 @@
   </mat-form-field>
   <button (click)="runQuery()" id="queryButton" mat-button disabled=true >Execute</button>
   <hr>
-  
+  <table>
+    <th>
+      <mat-list>
+        <mat-list-item> Pepper </mat-list-item>
+        <mat-list-item> Salt </mat-list-item>
+        <mat-list-item> Paprika </mat-list-item>
+      </mat-list> 
+    </th>
+    <th>
+      <mat-list>
+        <mat-list-item> Pepper </mat-list-item>
+        <mat-list-item> Salt </mat-list-item>
+        <mat-list-item> Paprika </mat-list-item>
+      </mat-list> 
+    </th>
+    <th>
+      <mat-list>
+        <mat-list-item> Pepper </mat-list-item>
+        <mat-list-item> Salt </mat-list-item>
+        <mat-list-item> Paprika </mat-list-item>
+      </mat-list> 
+    </th>
+  </table>
 </div>
