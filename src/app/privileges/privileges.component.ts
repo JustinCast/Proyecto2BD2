@@ -17,7 +17,7 @@ export class PrivilegesComponent implements OnInit {
   expandSchema(name: string) {
     console.log(name);
     if(!this.opened){
-      this._privileges.getTablesPrivileges();
+      this._privileges.getTablesPrivileges(name);
     }
     this.opened = !this.opened;
   }

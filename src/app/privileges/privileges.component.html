@@ -5,16 +5,27 @@
                 <mat-expansion-panel (click)="expandSchema(s.name)">
                     <mat-expansion-panel-header>
                     <mat-panel-title>
-                        {{s.name}}
+                        <span class="text-danger mr-2"><strong>Schema: </strong></span>{{s.name}}
                     </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <ul>
-                        <li *ngFor="let t of _privileges.tablePrivileges">{{t.privilege}}</li>
+                    <ul *ngIf="_privileges.tablePrivileges.length !== 0; else privileges_progressbar">
+                        <li *ngFor="let t of _privileges.tablePrivileges">
+                            <span class="text-info">{{t.t_name}}</span>
+                            <ul>
+                                <li *ngFor="let p of t.privileges">{{p}}</li>
+                            </ul>
+                        </li>                
                     </ul>
                 </mat-expansion-panel>
             </mat-accordion>
         </li>
     </ul>
+    <ng-template #privileges_progressbar>
+        <div id="loading" class="container">
+            <h2 class="text-center text-primary">Loading Tables</h2>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+    </ng-template>
     <ng-template #progressbar>
         <div id="loading" class="container">
             <h2 class="text-center text-primary">Loading Schemas</h2>

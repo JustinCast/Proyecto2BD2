@@ -43,8 +43,8 @@ async function getTablesPrivileges(req, res) {
     client = new Client({connectionString: localStorage.getItem('connString')})
     await client.connect();
     let query = {
-      text: 'SELECT * from db_privileges($1)',
-      values: [req.params.usr]
+      text: 'SELECT * from db_privileges($1, $2)',
+      values: [req.params.usr, req,params.schema]
     }
     let result = await client.query(query)
     res.status(200).json(result.rows);
