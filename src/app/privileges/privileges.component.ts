@@ -7,19 +7,30 @@ import { PrivilegesService } from '../services/privileges.service';
   styleUrls: ['./privileges.component.scss']
 })
 export class PrivilegesComponent implements OnInit {
-  opened: boolean = false;
+  step = 0;
   constructor(private _privileges: PrivilegesService) { }
 
   ngOnInit() {
     this._privileges.getSchemas();
   }
 
-  expandSchema(name: string) {
-    console.log(name);
-    if(!this.opened){
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  expandSchema(name: string, index: number) {
+    if(!this._privileges.opened[index]){
       this._privileges.getTablesPrivileges(name);
     }
-    this.opened = !this.opened;
+    this._privileges.opened[index] = !this._privileges.opened[index];
+    this.closeOthers(index);
+  }
+
+  closeOthers(index: number) {
+    for (let i = 0; i < this._privileges.opened.length; i++) {
+      if(i !== index)
+        this._privileges.opened[i] = false;
+    }
   }
 
 }

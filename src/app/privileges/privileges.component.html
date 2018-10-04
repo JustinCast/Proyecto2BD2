@@ -1,19 +1,17 @@
 <div id="privileges-container" class="container">
     <ul id="schemas-ul" *ngIf="_privileges.schemas.length !== 0; else progressbar">
-        <li *ngFor="let s of _privileges.schemas">
+        <li *ngFor="let s of _privileges.schemas; let i = index">
             <mat-accordion>
-                <mat-expansion-panel (click)="expandSchema(s.name)">
+                <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i)" hideToggle (click)="expandSchema(s.name, i)">
                     <mat-expansion-panel-header>
                     <mat-panel-title>
                         <span class="text-danger mr-2"><strong>Schema: </strong></span>{{s.name}}
                     </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <ul *ngIf="_privileges.tablePrivileges.length !== 0; else privileges_progressbar">
+                    <ul id="tables-ul" *ngIf="_privileges.tablePrivileges.length !== 0; else privileges_progressbar">
                         <li *ngFor="let t of _privileges.tablePrivileges">
-                            <span class="text-info">{{t.t_name}}</span>
-                            <ul>
-                                <li *ngFor="let p of t.privileges">{{p}}</li>
-                            </ul>
+                            <span class="text-info">{{t.t_name}}</span><br>
+                            <span>Privileges: {{t.privileges}}</span>
                         </li>                
                     </ul>
                 </mat-expansion-panel>

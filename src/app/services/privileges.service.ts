@@ -13,11 +13,12 @@ export class PrivilegesService {
 	schemas: Array<any> = [];
 	tablePrivileges: Array<Table> = [];
 	connection: Connection;
+	opened: Array<boolean> = [];
 	constructor(private _http: HttpClient, private _ui: UIUtilService) {}
 
 	getSchemas() {
 		this._http.get<any>(`${environment.SERVER_BASE_URL}getSchemas`).subscribe(
-			data => (this.schemas = data),
+			data => {this.schemas = data; this.fillStates(this.schemas.length);},
 			(err: HttpErrorResponse) => {
 				this.errorHandler(err);
 			}
@@ -55,6 +56,12 @@ export class PrivilegesService {
 			}
 		});
 		console.log(this.tablePrivileges);
+	}
+
+	fillStates(len: number) {
+		for (let i = 0; i < len; i++)
+			this.opened.unshift(false);
+		console.log(this.opened);
 	}
 
 	errorHandler(err: HttpErrorResponse) {

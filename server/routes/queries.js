@@ -44,7 +44,7 @@ async function getTablesPrivileges(req, res) {
     await client.connect();
     let query = {
       text: 'SELECT * from db_privileges($1, $2)',
-      values: [req.params.usr, req,params.schema]
+      values: [req.params.usr, req.params.schema]
     }
     let result = await client.query(query)
     res.status(200).json(result.rows);
