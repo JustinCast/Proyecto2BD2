@@ -7,6 +7,7 @@ import { PrivilegesService } from '../services/privileges.service';
   styleUrls: ['./privileges.component.scss']
 })
 export class PrivilegesComponent implements OnInit {
+  displayedColumns: string[] = ['_column', '_user', 'privilege'];
   step = 0;
   innerStep = 0;
   constructor(private _privileges: PrivilegesService) { }
@@ -29,6 +30,10 @@ export class PrivilegesComponent implements OnInit {
     }
     this._privileges.opened[index] = !this._privileges.opened[index];
     this.closeOthers(index);
+  }
+
+  expandTable(tableName: string) {
+    this._privileges.getColumnsPrivileges(tableName);
   }
 
   closeOthers(index: number) {

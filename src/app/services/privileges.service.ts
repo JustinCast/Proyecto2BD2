@@ -5,6 +5,7 @@ import { environment } from "../../environments/environment";
 import { Connection } from "../models/Connection";
 import { Table } from "../models/Table";
 import { TableInterface } from "./Table.interface";
+import { Column } from "../models/Column";
 
 @Injectable({
 	providedIn: "root"
@@ -12,13 +13,17 @@ import { TableInterface } from "./Table.interface";
 export class PrivilegesService {
 	schemas: Array<any> = [];
 	tablePrivileges: Array<Table> = [];
+	columnPrivileges: Array<Column> = [];
 	connection: Connection;
 	opened: Array<boolean> = [];
 	constructor(private _http: HttpClient, private _ui: UIUtilService) {}
 
 	getSchemas() {
 		this._http.get<any>(`${environment.SERVER_BASE_URL}getSchemas`).subscribe(
-			data => {this.schemas = data; this.fillStates(this.schemas.length);},
+			data => {
+				this.schemas = data;
+				this.fillStates(this.schemas.length);
+			},
 			(err: HttpErrorResponse) => {
 				this.errorHandler(err);
 			}
@@ -35,6 +40,18 @@ export class PrivilegesService {
 			)
 			.subscribe(
 				data => this.extractTables(data),
+				(err: HttpErrorResponse) => {
+					this.errorHandler(err);
+				}
+			);
+	}
+
+	getColumnsPrivileges(tableName: string) {
+		this.columnPrivileges = [];
+		this._http
+			.get<Column[]>(`${environment.SERVER_BASE_URL}getColumnsPrivileges/${tableName}`)
+			.subscribe(
+				data => this.columnPrivileges = data,
 				(err: HttpErrorResponse) => {
 					this.errorHandler(err);
 				}
@@ -59,8 +76,7 @@ export class PrivilegesService {
 	}
 
 	fillStates(len: number) {
-		for (let i = 0; i < len; i++)
-			this.opened.unshift(false);
+		for (let i = 0; i < len; i++) this.opened.unshift(false);
 		console.log(this.opened);
 	}
 
