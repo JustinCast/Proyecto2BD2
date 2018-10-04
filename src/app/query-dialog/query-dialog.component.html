@@ -1,9 +1,11 @@
-<div id="containerQueryDialog" style="background-color: transparent">
+<div id="containerQueryDialog" style="background-color: silver; margin: 0px">
   <h3 class="text-center">Write the query</h3>
   <hr>
-  <mat-slide-toggle style="float: right; margin: 2%">Activate</mat-slide-toggle>  
+  <mat-slide-toggle (click)="availableWriteQuery()" id="enableOrDesable" style="float: right; margin: 2%"></mat-slide-toggle>  
   <mat-form-field style="padding: 5%; width: 60%" >
-    <textarea matInput placeholder="Write the query" ></textarea>
+    <textarea id="queryTextArea" matInput placeholder="Write the query" disabled=true></textarea>
   </mat-form-field>
-  <button mat-button >Execute</button>
+  <button (click)="runQuery()" id="queryButton" mat-button disabled=true >Execute</button>
+  <hr>
+  
 </div>

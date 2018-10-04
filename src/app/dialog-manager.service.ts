@@ -26,8 +26,9 @@ export class DialogManagerService {
   openQueryDialog(){
     let dialogRef: MatDialogRef<QueryDialogComponent> = this.dialog.open(
       QueryDialogComponent, {
-      width: "50%",
-      height: "40%",
+      width: "60%",
+      height: "35%",
+      panelClass: 'dialog',
       }
     );
     return dialogRef.afterClosed();
