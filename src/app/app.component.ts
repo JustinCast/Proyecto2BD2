@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { MatIcon, MatRadioChange, MatRadioButton } from "@angular/material";
+import { MatCheckbox } from "@angular/material";
 import { DialogManagerService } from "./dialog-manager.service";
 import { Connection } from "./models/Connection";
 import { ConnService } from "./services/conn.service";
+import { PrivilegesService } from "./services/privileges.service";
 
 @Component({
   selector: "app-root",
@@ -12,7 +13,8 @@ import { ConnService } from "./services/conn.service";
 export class AppComponent implements OnInit {
   constructor(
     private _dialogManager: DialogManagerService,
-    private conn: ConnService
+    private conn: ConnService,
+    private _privilegeService: PrivilegesService
   ) {}
 
   ngOnInit(){
@@ -25,10 +27,11 @@ export class AppComponent implements OnInit {
       .openNewConnectionDialog(new Connection("", "", 0, "", "", ""));
   }
 
+  activeConn(checkbox: MatCheckbox) {
+    this._privilegeService.connection = checkbox.value as Connection;
+  }
   openQueryDialog(){
     this._dialogManager
     .openQueryDialog();
   }
-
-  activeConn() {}
 }

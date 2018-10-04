@@ -1,0 +1,64 @@
+<div id="privileges-container" class="container">
+    <ul id="schemas-ul" *ngIf="_privileges.schemas.length !== 0; else progressbar">
+        <h2 class="text-center text-white shadow p-3 mb-2 rounded">Privileges Overview</h2>
+        <li *ngFor="let s of _privileges.schemas; let i = index">
+            <mat-accordion>
+                <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i)" hideToggle (click)="expandSchema(s.name, i)">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <span class="text-danger mr-2"><strong>Schema: </strong></span>{{s.name}}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <ul id="tables-ul" *ngIf="_privileges.tablePrivileges.length !== 0; else privileges_progressbar">
+                        <li *ngFor="let t of _privileges.tablePrivileges; let innerIndex = index">
+                            <mat-accordion>
+                                <mat-expansion-panel (click)="expandTable(t.t_name)" [expanded]="innerStep === innerIndex" (opened)="setInnerStep(innerIndex)" hideToggle>
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <span class="mr-2 table-name"><strong>Table: </strong></span>{{t.t_name}}
+                                            <span class="ml-4 mr-2 privileges"><strong>Privileges: </strong></span>{{t.privileges}}
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <table mat-table [dataSource]="_privileges.columnPrivileges" class="mat-elevation-z8">
+                                        <!-- Position Column -->
+                                        <ng-container matColumnDef="_column">
+                                            <th class="text-info" mat-header-cell *matHeaderCellDef> Column </th>
+                                            <td mat-cell class="text-secondary" *matCellDef="let element"> {{element._column}} </td>
+                                        </ng-container>
+                                        
+                                        <!-- Name Column -->
+                                        <ng-container matColumnDef="_user">
+                                            <th class="text-danger" mat-header-cell *matHeaderCellDef> User </th>
+                                            <td mat-cell class="text-secondary" *matCellDef="let element"> {{element._user}} </td>
+                                        </ng-container>
+                                        
+                                        <!-- Weight Column -->
+                                        <ng-container matColumnDef="privilege">
+                                            <th class="text-success" mat-header-cell *matHeaderCellDef> Privilege </th>
+                                            <td mat-cell class="text-secondary" *matCellDef="let element"> {{element.privilege}} </td>
+                                        </ng-container>
+
+                                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                    </table>
+                                </mat-expansion-panel>
+                            </mat-accordion>
+                        </li>                
+                    </ul>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </li>
+    </ul>
+    <ng-template #privileges_progressbar>
+        <div id="loading" class="container">
+            <h2 class="text-center text-primary">Loading Tables</h2>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+    </ng-template>
+    <ng-template #progressbar>
+        <div id="loading" class="container">
+            <h2 class="text-center text-primary">Loading Schemas</h2>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+    </ng-template>
+</div>

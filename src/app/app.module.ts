@@ -9,10 +9,11 @@ import { DialogManagerService } from "./dialog-manager.service";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { UIUtilService } from "./services/uiutil.service";
+import { PrivilegesComponent } from './privileges/privileges.component';
 import { QueryDialogComponent } from './query-dialog/query-dialog.component';
 
 @NgModule({
-  declarations: [AppComponent, ConnectionDialogComponent, QueryDialogComponent],
+  declarations: [AppComponent, ConnectionDialogComponent, PrivilegesComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

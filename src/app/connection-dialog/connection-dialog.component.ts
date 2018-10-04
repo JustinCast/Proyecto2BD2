@@ -51,7 +51,7 @@ export class ConnectionDialogComponent implements OnInit {
   makeLoginRequest() {
     this._conn.login(this.connection)
     .subscribe(
-      () => {
+      (conn) => {
         this._conn.actualConnections.unshift(this.connection);
         this._conn.saveSession(this.connection);
         this._ui.openSnackBar('Connection created successfully', 'Ok');
