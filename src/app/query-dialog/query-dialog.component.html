@@ -2,32 +2,19 @@
   <h3 class="text-center">Write the query</h3>
   <hr>
   <mat-slide-toggle (click)="availableWriteQuery()" id="enableOrDesable" style="float: right; margin: 2%"></mat-slide-toggle>  
-  <mat-form-field style="padding: 5%; width: 60%" >
+  <mat-form-field style="padding-left: 2% ;width: 60%" >
     <textarea id="queryTextArea" matInput placeholder="Write the query" disabled=true></textarea>
   </mat-form-field>
   <button (click)="runQuery()" id="queryButton" mat-button disabled=true >Execute</button>
   <hr>
-  <table>
-    <th>
-      <mat-list>
-        <mat-list-item> Pepper </mat-list-item>
-        <mat-list-item> Salt </mat-list-item>
-        <mat-list-item> Paprika </mat-list-item>
-      </mat-list> 
-    </th>
-    <th>
-      <mat-list>
-        <mat-list-item> Pepper </mat-list-item>
-        <mat-list-item> Salt </mat-list-item>
-        <mat-list-item> Paprika </mat-list-item>
-      </mat-list> 
-    </th>
-    <th>
-      <mat-list>
-        <mat-list-item> Pepper </mat-list-item>
-        <mat-list-item> Salt </mat-list-item>
-        <mat-list-item> Paprika </mat-list-item>
-      </mat-list> 
-    </th>
+  <table class="mat-elevation-z8">
+    <!-- Position Column -->
+    <ng-container>
+      <li *ngFor="let item of contenido | paginate: { itemsPerPage: 10, currentPage: p }">{{item}} </li>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+             
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div>

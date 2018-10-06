@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgxPaginationModule} from 'ngx-pagination'
 import { 
   MatButtonModule,
   MatListModule,
@@ -28,7 +29,8 @@ import {
     MatProgressBarModule,
     MatTreeModule,
     MatTableModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    NgxPaginationModule
   ],
   exports: [
     MatButtonModule,
@@ -42,7 +44,8 @@ import {
     MatProgressBarModule,
     MatTreeModule,
     MatTableModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    NgxPaginationModule,
   ],
   declarations: []
 })
