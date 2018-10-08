@@ -1,8 +1,13 @@
 export class Col {
-	public rows: Array<string> = [];
-	constructor(public col_name?: string) {}
+	public values: Array<any> = [];
+	constructor(
+		public name?: string
+	) {}
 
-	public setRow(row: string): void {
-		this.rows.unshift(row);
+	public setValue(value: any): void {
+		this.values.unshift(value);
+	}
+	public getValue(c: string) {
+		
 	}
 }

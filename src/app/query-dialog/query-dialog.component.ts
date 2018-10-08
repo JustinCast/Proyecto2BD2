@@ -18,7 +18,6 @@ export class QueryDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public connections: Array<Connection>,
   ) { }
  
-  contenido=['Luis carlos','conzalez','18','2016140241','20114455','3000','Luis carlos','conzalez','18','2016140241','20114455','3000','Luis carlos','conzalez','18','2016140241','20114455','3000','Luis carlos','conzalez','18','2016140241','20114455','3000','Luis carlos','conzalez','18','2016140241','20114455','3000'];
   p: number = 1;
 
   ngOnInit() {}

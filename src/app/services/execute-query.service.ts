@@ -11,17 +11,17 @@ import { List } from 'linqts';
 })
 export class ExecuteQueryService{
 	columns: Array<Col> = [];
-	colsNames: Array<string> = [];
+	names: Array<string> = []
     connection: Connection;
 
     constructor(private _http: HttpClient, private _ui: UIUtilService) {}
 
     executeQuery(information: string) {
-		this._http.get<ColumnInterface[]>(`${environment.SERVER_BASE_URL}executeQuery/${information}`)
+		this._http.get<any[]>(`${environment.SERVER_BASE_URL}executeQuery/${information}`)
 		.subscribe(
 			data => {
-				extractColsNames(data.)
-				console.log(data);
+				this.extractColsNames(data['fields'])
+				//console.log(data);
 				this.extractColumns(data);
 				//console.log(this.namesColumns);
 			},
@@ -44,11 +44,24 @@ export class ExecuteQueryService{
 	}
 
 	extractColsNames(names: Array<any>) {
-
+		names.forEach(name => {
+			this.columns.unshift(new Col(name.name));
+			this.names.push(name.name);
+		})
 	}
 
-	extractColumns(cols: List<ColumnInterface>) {
-		this.columns = cols.GroupBy(t => pet, t === Object.keys(cols[0]));
+	extractColumns(cols: any) {
+		this.columns.forEach(c => {
+			for (let index = 0; index < cols['rows'].length; index++) {
+				var keys = Object.keys(cols['rows'][index])
+				for(var k in keys){
+					if(keys[k] === c.name)
+						c.setValue(cols['rows'][index][keys[k]])
+				}
+			}
+			console.log(c.values)
+		})
+
 	}
 
 }

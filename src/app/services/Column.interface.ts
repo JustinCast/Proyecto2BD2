@@ -1,5 +1,4 @@
 export interface ColumnInterface {
-    fields: Array<any>,
-    col_name: any,
+    name: string,
     row: any
 }
