@@ -13,7 +13,9 @@
   </ng-template>
 </div>
 
-<button (click)="openQueryDialog()" mat-button id="writeQuery-btn">Write query</button>
+<div class="container text-center">
+  <button (click)="openQueryDialog()" mat-raised-button id="writeQuery-btn">Write query</button>
+</div>
 
 <app-privileges *ngIf="_privilegeService.connection"></app-privileges>
 

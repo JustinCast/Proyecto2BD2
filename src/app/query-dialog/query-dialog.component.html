@@ -1,16 +1,21 @@
-<div id="containerQueryDialog" style="background-color: silver; margin: 1px;">
+<div id="containerQueryDialog" class="container bg-white text-center">
   <h3 class="text-center">Write the query</h3>
-  <hr>
+  <mat-form-field>
+    <mat-select placeholder="Connections">
+      <mat-option  #connection (click)="getConn(connection.value)" *ngFor="let con of connections" [value]="con">
+        {{con.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field><br>
     
-  <mat-form-field style="padding-left: 2% ;width: 60%" >
+  <mat-form-field id="query-form-field">
     <textarea id="queryTextArea"  matInput placeholder="Write the query"></textarea>
   </mat-form-field>
   <button (click)="runQuery()" mat-button>Execute</button>
-  <hr>
   
-  <mat-tab-group>
+  <mat-tab-group class="text-left">
     <mat-tab *ngFor="let c of _executionQuery.columns" [label]="c.name">
-      <ul class="container ml4">
+      <ul class="ml-4">
         <li *ngFor="let v of c.values | paginate: { itemsPerPage: 10, currentPage: p }">
           {{v}}
         </li>
@@ -18,13 +23,4 @@
       <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </mat-tab>
   </mat-tab-group>
-
-
-  <mat-form-field>
-    <mat-select placeholder="Connections">
-      <mat-option  #connection (click)="getConn(connection.value)" *ngFor="let con of connections" [value]="con">
-        {{con.name}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
 </div>
