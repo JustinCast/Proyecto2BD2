@@ -1,12 +1,13 @@
 <div id="containerQueryDialog" style="background-color: silver; margin: 1px;">
   <h3 class="text-center">Write the query</h3>
   <hr>
-  <mat-slide-toggle (click)="availableWriteQuery()" id="enableOrDesable" style="float: right; margin: 2%"></mat-slide-toggle>  
+  <mat-slide-toggle (click)="writeQuery = !writeQuery" id="enableOrDesable" style="float: right; margin: 2%"></mat-slide-toggle>  
   <mat-form-field style="padding-left: 2% ;width: 60%" >
-    <textarea id="queryTextArea" matInput placeholder="Write the query" disabled=true></textarea>
+    <textarea id="queryTextArea" [disabled]="!writeQuery"  matInput placeholder="Write the query"></textarea>
   </mat-form-field>
-  <button (click)="runQuery()" id="queryButton" mat-button disabled=true >Execute</button>
+  <button [disabled]="!writeQuery" (click)="runQuery()" mat-button>Execute</button>
   <hr>
+
   <table class="mat-elevation-z8">
     <!-- Position Column -->
     <ng-container>
@@ -15,6 +16,25 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-             
+  <mat-form-field>
+    <mat-select placeholder="Connections">
+      <mat-option [disabled]="!writeQuery"  #connection (click)="getConn(connection.value)" *ngFor="let con of connections" [value]="con">
+        {{con.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>    
   <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+
+  <mat-list  *ngIf="_executionQuery.elements" role="list">
+    <mat-list-item *ngFor="let item of _executionQuery.elements" role="listitem">{{item.num}}</mat-list-item>
+  </mat-list>
+
+  <mat-list  *ngIf="_executionQuery.namesColumns " role="list">
+    <mat-list-item *ngFor="let item of _executionQuery.namesColumns" role="listitem">{{item.name}}</mat-list-item>
+  </mat-list>
+
+  
+
+
 </div>

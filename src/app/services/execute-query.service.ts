@@ -8,15 +8,20 @@ import { Connection } from "../models/Connection";
 	providedIn: "root"
 })
 export class ExecuteQueryService{
-    elements: Array<any> = [];
+	elements: any;
+	namesColumns: any;
     connection: Connection;
 
     constructor(private _http: HttpClient, private _ui: UIUtilService) {}
 
-    executeQuery() {
-		this._http.get<any>(`${environment.SERVER_BASE_URL}executeQuery`).subscribe(
+    executeQuery(information: string) {
+		this._http.get<any>(`${environment.SERVER_BASE_URL}executeQuery/${information}`)
+		.subscribe(
 			data => {
-				this.elements = data;
+				console.log(data);
+				this.elements = data.rows;
+				this.namesColumns = data.fields;
+				console.log(this.namesColumns);
 			},
 			(err: HttpErrorResponse) => {
 				this.errorHandler(err);

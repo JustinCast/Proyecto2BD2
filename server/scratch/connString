@@ -1,1 +1,1 @@
-postgres://usr_p2db2:12345@leoviquez.com:8000/p2db2?ssl=false
+postgres://thejopax:jushu1997@ohio-postgresql-pablo.cwvcjn59heq2.us-east-2.rds.amazonaws.com:5432/satellite_prueba?ssl=false

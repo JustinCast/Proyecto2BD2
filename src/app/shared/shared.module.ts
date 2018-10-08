@@ -13,7 +13,8 @@ import {
   MatProgressBarModule,
   MatTreeModule,
   MatTableModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatSelectModule
  } from "@angular/material";
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import {
     MatTreeModule,
     MatTableModule,
     MatSlideToggleModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatSelectModule
   ],
   exports: [
     MatButtonModule,
@@ -46,6 +48,7 @@ import {
     MatTableModule,
     MatSlideToggleModule,
     NgxPaginationModule,
+    MatSelectModule
   ],
   declarations: []
 })

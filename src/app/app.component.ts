@@ -30,8 +30,9 @@ export class AppComponent implements OnInit {
   activeConn(checkbox: MatCheckbox) {
     this._privilegeService.connection = checkbox.value as Connection;
   }
+
   openQueryDialog(){
     this._dialogManager
-    .openQueryDialog();
+    .openQueryDialog(this.conn.actualConnections);
   }
 }

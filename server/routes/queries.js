@@ -76,8 +76,9 @@ async function executeQuery(req, res){
     client = new Client({connectionString: localStorage.getItem('connString')})
     await client.connect();
 
-    let result = await client.query(req.body)
-    res.status(200).json(result.body);
+    let result = await client.query(String(req.params.information))
+    console.log(result);
+    res.status(200).json(result);
   } catch (error) {
     console.log(error);
   }
@@ -88,5 +89,5 @@ module.exports = {
   getSchemas: getSchemas,
   getTablesPrivileges: getTablesPrivileges,
   getColumnsPrivileges: getColumnsPrivileges,
-  executeQuery : executeQuery
+  executeQuery: executeQuery
 };
