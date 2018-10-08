@@ -5,33 +5,34 @@ import { environment } from "../../environments/environment";
 import { Connection } from "../models/Connection";
 import { ColumnInterface } from "./Column.interface";
 import { Col } from "../models/Col";
-import { List } from 'linqts';
+import { List } from "linqts";
 @Injectable({
 	providedIn: "root"
 })
-export class ExecuteQueryService{
+export class ExecuteQueryService {
 	columns: Array<Col> = [];
-	names: Array<string> = []
-    connection: Connection;
+	names: Array<string> = [];
+	connection: Connection;
 
-    constructor(private _http: HttpClient, private _ui: UIUtilService) {}
+	constructor(private _http: HttpClient, private _ui: UIUtilService) {}
 
-    executeQuery(information: string) {
-		this._http.get<any[]>(`${environment.SERVER_BASE_URL}executeQuery/${information}`)
-		.subscribe(
-			data => {
-				this.extractColsNames(data['fields'])
-				//console.log(data);
-				this.extractColumns(data);
-				//console.log(this.namesColumns);
-			},
-			(err: HttpErrorResponse) => {
-				this.errorHandler(err);
-			}
-		);
-    }
-    
-    errorHandler(err: HttpErrorResponse) {
+	executeQuery(information: string) {
+		this._http
+			.get<any[]>(`${environment.SERVER_BASE_URL}executeQuery/${information}`)
+			.subscribe(
+				data => {
+					this.extractColsNames(data["fields"]);
+					//console.log(data);
+					this.extractColumns(data);
+					//console.log(this.namesColumns);
+				},
+				(err: HttpErrorResponse) => {
+					this.errorHandler(err);
+				}
+			);
+	}
+
+	errorHandler(err: HttpErrorResponse) {
 		if (err.error instanceof Error) {
 			console.log("An error occurred:", err.error.message);
 		} else {
@@ -47,21 +48,18 @@ export class ExecuteQueryService{
 		names.forEach(name => {
 			this.columns.unshift(new Col(name.name));
 			this.names.push(name.name);
-		})
+		});
 	}
 
 	extractColumns(cols: any) {
 		this.columns.forEach(c => {
-			for (let index = 0; index < cols['rows'].length; index++) {
-				var keys = Object.keys(cols['rows'][index])
-				for(var k in keys){
-					if(keys[k] === c.name)
-						c.setValue(cols['rows'][index][keys[k]])
+			for (let index = 0; index < cols["rows"].length; index++) {
+				var keys = Object.keys(cols["rows"][index]);
+				for (var k in keys) {
+					if (keys[k] === c.name) c.setValue(cols["rows"][index][keys[k]]);
 				}
 			}
-			console.log(c.values)
-		})
-
+			console.log(c.values);
+		});
 	}
-
 }
