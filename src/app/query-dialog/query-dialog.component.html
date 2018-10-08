@@ -7,15 +7,16 @@
   </mat-form-field>
   <button [disabled]="!writeQuery" (click)="runQuery()" mat-button>Execute</button>
   <hr>
-
-  <table class="mat-elevation-z8">
-    <!-- Position Column -->
+  <!-- <table class="mat-elevation-z8">
     <ng-container>
-      <li *ngFor="let item of contenido | paginate: { itemsPerPage: 10, currentPage: p }">{{item}} </li>
+      <li *ngFor="let item of _executionQuery.elements | paginate: { itemsPerPage: 10, currentPage: p }">{{item.num}} </li>
     </ng-container>
+    
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+  </table> -->
+
+
   <mat-form-field>
     <mat-select placeholder="Connections">
       <mat-option [disabled]="!writeQuery"  #connection (click)="getConn(connection.value)" *ngFor="let con of connections" [value]="con">
@@ -26,15 +27,15 @@
   <pagination-controls (pageChange)="p = $event"></pagination-controls>
 
 
-  <mat-list  *ngIf="_executionQuery.elements" role="list">
+
+
+
+  <!-- <mat-list  *ngIf="_executionQuery.elements" role="list">
     <mat-list-item *ngFor="let item of _executionQuery.elements" role="listitem">{{item.num}}</mat-list-item>
   </mat-list>
 
   <mat-list  *ngIf="_executionQuery.namesColumns " role="list">
     <mat-list-item *ngFor="let item of _executionQuery.namesColumns" role="listitem">{{item.name}}</mat-list-item>
-  </mat-list>
-
-  
-
+  </mat-list> -->
 
 </div>

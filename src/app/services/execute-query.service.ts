@@ -3,25 +3,27 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { UIUtilService } from "./uiutil.service";
 import { environment } from "../../environments/environment";
 import { Connection } from "../models/Connection";
-
+import { ColumnInterface } from "./Column.interface";
+import { Col } from "../models/Col";
+import { List } from 'linqts';
 @Injectable({
 	providedIn: "root"
 })
 export class ExecuteQueryService{
-	elements: any;
-	namesColumns: any;
+	columns: Array<Col> = [];
+	colsNames: Array<string> = [];
     connection: Connection;
 
     constructor(private _http: HttpClient, private _ui: UIUtilService) {}
 
     executeQuery(information: string) {
-		this._http.get<any>(`${environment.SERVER_BASE_URL}executeQuery/${information}`)
+		this._http.get<ColumnInterface[]>(`${environment.SERVER_BASE_URL}executeQuery/${information}`)
 		.subscribe(
 			data => {
+				extractColsNames(data.)
 				console.log(data);
-				this.elements = data.rows;
-				this.namesColumns = data.fields;
-				console.log(this.namesColumns);
+				this.extractColumns(data);
+				//console.log(this.namesColumns);
 			},
 			(err: HttpErrorResponse) => {
 				this.errorHandler(err);
@@ -39,6 +41,14 @@ export class ExecuteQueryService{
 				)}`
 			);
 		}
+	}
+
+	extractColsNames(names: Array<any>) {
+
+	}
+
+	extractColumns(cols: List<ColumnInterface>) {
+		this.columns = cols.GroupBy(t => pet, t === Object.keys(cols[0]));
 	}
 
 }

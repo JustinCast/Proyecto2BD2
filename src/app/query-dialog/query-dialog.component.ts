@@ -26,7 +26,8 @@ export class QueryDialogComponent implements OnInit {
   runQuery(){
     var textArea = <HTMLInputElement> document.getElementById("queryTextArea");
     this._executionQuery.executeQuery(textArea.value);
-    console.log("imprime"+this._executionQuery.elements);
+    //console.log("imprime"+this._executionQuery.elements);
+
   }
 
   getConn(conn: Connection) {
