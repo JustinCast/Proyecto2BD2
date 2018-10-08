@@ -55,6 +55,7 @@ export class ConnectionDialogComponent implements OnInit {
         this._conn.actualConnections.unshift(this.connection);
         this._conn.saveSession(this.connection);
         this._ui.openSnackBar('Connection created successfully', 'Ok');
+        this._conn.checkIfProcExists();
       },
       (err: HttpErrorResponse) => {
         this._conn.errorHandler(err);

@@ -24,7 +24,8 @@ export class ConnService {
   checkIfProcExists() {
     this._http.post(`${environment.SERVER_BASE_URL}checkIfProcsExists`, {})
     .subscribe(
-      () => {},
+      () => {
+      },
       (err: HttpErrorResponse) => {
         this.errorHandler(err);
       }
