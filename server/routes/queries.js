@@ -127,8 +127,12 @@ async function executeQuery(req, res) {
 		await client.connect();
 
 		let result = await client.query(String(req.params.information));
-		console.log(result);
-		res.status(200).json(result);
+		console.log(result)
+		if(result[1] !== undefined)
+			res.status(200).json(result[1]);
+		else {
+			res.status(200).json(result);			
+		}
 	} catch (error) {
 		console.log(error);
 	}

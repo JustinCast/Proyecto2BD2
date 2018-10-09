@@ -32,7 +32,8 @@ export class QueryDialogComponent implements OnInit {
   getConn(conn: Connection) {
     let connection= "host="+conn.server+" user="+conn.user+" password="+conn.password+" dbname="+conn.database;
     var textArea = <HTMLInputElement> document.getElementById("queryTextArea");
-    textArea.value+="select dblink_connect('"+connection+"',' ');";
+    textArea.value+="select dblink_connect('conn', '"+connection+"');";
+    textArea.value += "\n\n SELECT * FROM dblink('conn', ' ') as table_name( );"
   }
 
   message(message:string, action: string, dur:number) {
