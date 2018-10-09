@@ -18,8 +18,8 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(){
-    if(this.conn.isLoggedIn())
-      this.conn.actualConnections.unshift(this.conn.getConn());
+    /*if(this.conn.isLoggedIn())
+      this.conn.actualConnections.unshift(this.conn.getConn());*/
   }
 
   newConn() {

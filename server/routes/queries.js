@@ -122,11 +122,10 @@ async function getColumnsPrivileges(req, res) {
 //Se obtiene la conección actual y se ejecuta el query
 async function executeQuery(req, res) {
 	try {
-		loadLocalStorage();
-		client = new Client({ connectionString: localStorage.getItem("connString") });
+		client = new Client({ connectionString: req.body.connString});
 		await client.connect();
 
-		let result = await client.query(String(req.params.information));
+		let result = await client.query(String(req.body.information));
 		console.log(result)
 		if(result[1] !== undefined)
 			res.status(200).json(result[1]);

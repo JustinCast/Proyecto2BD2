@@ -16,9 +16,12 @@ export class ExecuteQueryService {
 
 	constructor(private _http: HttpClient, private _ui: UIUtilService) {}
 
-	executeQuery(information: string) {
+	executeQuery(information: string, connString: string) {
 		this._http
-			.get<any[]>(`${environment.SERVER_BASE_URL}executeQuery/${information}`)
+			.post<any[]>(`${environment.SERVER_BASE_URL}executeQuery`, {
+				information: information,
+				connString: connString
+			})
 			.subscribe(
 				data => {
 					this.extractColsNames(data["fields"]);
