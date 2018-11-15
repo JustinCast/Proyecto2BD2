@@ -30,7 +30,7 @@ async function getSchemas(req, res) {
 		client = new Client({ connectionString: localStorage.getItem("connString") });
 		await client.connect();
 
-		let result = await client.query("SELECT * FROM get_schemas()");
+		let result = await client.query("SELECT schema_name as name FROM information_schema.schemata");
 		res.status(200).json(result.rows);
 	} catch (error) {
 		console.log(error);
@@ -127,11 +127,12 @@ async function executeQuery(req, res) {
 
 		let result = await client.query(String(req.body.information));
 		console.log(result)
-		if(result[1] !== undefined)
-			res.status(200).json(result[1]);
-		else {
-			res.status(200).json(result);			
-		}
+		res.status(200).json(result);
+		// if(result[1] !== undefined)
+		// 	res.status(200).json(result[1]);
+		// else {
+		// 	res.status(200).json(result);			
+		// }
 	} catch (error) {
 		console.log(error);
 	}
